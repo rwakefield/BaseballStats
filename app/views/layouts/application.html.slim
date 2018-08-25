@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title Rocket Homework: Baseball Stats Application
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  body
+    .container-fluid
+      nav.navbar.navbar-dark.sticky-top.bg-dark.row
+        .col-3
+          = link_to 'Baseball Stats', root_path, class: 'navbar-brand'
+        .col-7
+        .col-2
+      #main-container
+        #view-content.container
+          = yield
+    footer.footer
+      .container
+        span.text-muted
+          = link_to 'https://github.com/rwakefield/RocketHomework' do
+            = fa_icon 'github', text: 'View Source'
