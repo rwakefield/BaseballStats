@@ -7,17 +7,21 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   body
-    .container-fluid
-      nav.navbar.navbar-dark.sticky-top.bg-dark.row
-        .col-3
-          = link_to 'Baseball Stats', root_path, class: 'navbar-brand'
-        .col-7
-        .col-2
-      #main-container
-        #view-content.container
-          = yield
-    footer.footer
-      .container
-        span.text-muted
-          = link_to 'https://github.com/rwakefield/RocketHomework' do
-            = fa_icon 'github', text: 'View Source'
+    nav.navbar.navbar-dark.sticky-top.bg-dark
+      = link_to 'Baseball Stats', root_path, class: 'navbar-brand'
+    #main-container.container-fluid
+      .row
+        .col-2.sidebar
+          nav.navbar
+            ul.nav.flex-column
+              li.nav-item
+                = link_to players_path, class: 'nav-link' do
+                  = fa_icon 'user', text: 'Players'
+        .col-10
+          #view-content.container
+            = yield
+  footer.footer
+    .container
+      span.text-muted
+        = link_to 'https://github.com/rwakefield/RocketHomework' do
+          = fa_icon 'github', text: 'View Source'

@@ -7,6 +7,26 @@ body {
   margin-bottom: 60px;
 }
 
+h2 {
+  margin-bottom: 15px;
+}
+
+.sidebar {
+  padding: 0;
+}
+
+.actions {
+  text-align: center;
+}
+
+button.btn-success a {
+  color: #fff
+}
+
+.btn a {
+  text-decoration: none;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -20,6 +40,6 @@ body {
   padding-top: 15px;
 }
 
-#main-container {
+#view-content {
   margin-top: 15px;
 }
