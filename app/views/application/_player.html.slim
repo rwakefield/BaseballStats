@@ -7,9 +7,9 @@ tr
     = player.birth_year
   td.actions
     .btn-group role='group'
-      button.btn.btn-sm type='button'
+      button.btn.btn-sm.btn-info type='button'
         = link_to edit_player_path(player) do
           = fa_icon 'wrench', text: 'Edit'
-      button.btn.btn-sm type='button'
+      button.btn.btn-sm.btn-info type='button'
         = link_to player_path(player) do
           = fa_icon 'eye', text: 'Show'
