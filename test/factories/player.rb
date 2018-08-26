@@ -4,5 +4,10 @@ FactoryBot.define do
     last_name { 'Williams' }
     birth_year { 1918 }
     identifier { 'goat' }
+    imported { false }
+
+    trait :imported do
+      imported { true }
+    end
   end
 end

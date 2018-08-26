@@ -5,7 +5,9 @@ describe 'PlayerLoader' do
     it 'will generate identifier if none is passed' do
       PlayerLoader.new(first_name: 'Bob', last_name: 'Ross', birth_year: 1942, identifier: nil).load
       Player.count.must_equal 1
-      Player.first.identifier.must_equal 'rossbo01'
+      player = Player.first
+      player.identifier.must_equal 'rossbo01'
+      player.imported.must_equal true
     end
 
     it 'will stub other data if none is passed' do
@@ -15,6 +17,7 @@ describe 'PlayerLoader' do
       player.first_name.must_equal 'unknown'
       player.last_name.must_equal 'unknown'
       player.birth_year.must_equal 0
+      player.imported.must_equal true
     end
 
     describe 'when the player exists' do
@@ -26,6 +29,7 @@ describe 'PlayerLoader' do
         results = Player.first
         results.first_name.must_equal 'Bob'
         results.last_name.must_equal 'Ross'
+        results.imported.must_equal true
       end
     end
 
@@ -34,6 +38,7 @@ describe 'PlayerLoader' do
         Player.count.must_equal 0
         PlayerLoader.new(first_name: 'Bob', last_name: 'Ross', birth_year: 1942, identifier: 'Bob').load
         Player.count.must_equal 1
+        Player.first.imported.must_equal true
       end
     end
 
@@ -43,6 +48,7 @@ describe 'PlayerLoader' do
       loader.load
       loader.load
       Player.count.must_equal 1
+      Player.first.imported.must_equal true
     end
   end
 end

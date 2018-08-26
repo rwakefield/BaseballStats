@@ -37,5 +37,12 @@ describe 'Player' do
       player.errors.count.must_equal 1
       player.errors.full_messages.must_equal ['Identifier has already been taken']
     end
+
+    it 'will validate the inclusion of imported' do
+      player = build :player, imported: nil
+      player.valid?.must_equal false
+      player.errors.size.must_equal 1
+      player.errors.full_messages.must_equal ['Imported is not included in the list']
+    end
   end
 end

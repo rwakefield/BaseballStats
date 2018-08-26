@@ -11,6 +11,7 @@ class PlayerLoader
       p.first_name = first_name
       p.last_name = last_name
       p.birth_year = birth_year
+      p.imported = true
     end.save!
   end
 
