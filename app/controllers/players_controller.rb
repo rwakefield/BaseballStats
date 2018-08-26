@@ -1,7 +1,6 @@
 class PlayersController < ApplicationController
-  helper_method :players
-
   def index
+    @players = Player.paginate(page: params[:page])
   end
 
   def new
@@ -35,10 +34,6 @@ class PlayersController < ApplicationController
   end
 
   private
-
-  def players
-    Player.all
-  end
 
   def player_params
     params.require(:player).permit(:first_name, :last_name, :identifier, :birth_year);

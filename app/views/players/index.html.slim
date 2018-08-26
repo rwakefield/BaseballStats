@@ -4,6 +4,8 @@ button class='btn btn-success btn-sm float-right' type='button'
 
 h2 Players
 
+= will_paginate @players
+
 table.table.table-sm.table-striped.table-bordered#players
   thead
     tr
@@ -16,4 +18,4 @@ table.table.table-sm.table-striped.table-bordered#players
       th.actions scope='col'
         | Actions
   tbody
-    = render partial: 'player', collection: players, as: :player
+    = render partial: 'player', collection: @players, as: :player
