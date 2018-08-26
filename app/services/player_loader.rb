@@ -3,10 +3,11 @@ class PlayerLoader
     @first_name = first_name || 'unknown'
     @last_name = last_name || 'unknown'
     @birth_year = birth_year || 0
-    @identifier = identifier || generated_identifier
+    @identifier = identifier
   end
 
   def load
+    set_valid_identifier unless identifier
     Player.find_or_initialize_by(identifier: identifier).tap do |p|
       p.first_name = first_name
       p.last_name = last_name
@@ -17,17 +18,25 @@ class PlayerLoader
 
   private
 
-  def generated_identifier
-    num = 0
+  def set_valid_identifier
+    num = 1
+    loop do
+      @identifier = generate_identifier(num)
+      break if identifier_is_valid?
+      num += 1
+    end
+  end
+
+  def generate_identifier(num)
     part1 = last_name.delete("^a-zA-Z")[0...5]
     part2 = first_name.delete("^a-zA-Z")[0...2]
-    generated = nil
-    loop do
-      num += 1
-      generated = "#{part1}#{part2}#{num.to_s.rjust(2, '0')}".downcase
-      break unless Player.find_by(identifier: generated)
-    end
-    generated
+    "#{part1}#{part2}#{num.to_s.rjust(2, '0')}".downcase
+  end
+
+  def identifier_is_valid?
+    player = Player.find_by(identifier: identifier)
+    return true unless player
+    player.birth_year == birth_year ? true : false
   end
 
   attr_reader :first_name, :last_name, :birth_year, :identifier

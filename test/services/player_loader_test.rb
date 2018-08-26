@@ -50,5 +50,24 @@ describe 'PlayerLoader' do
       Player.count.must_equal 1
       Player.first.imported.must_equal true
     end
+
+    it 'will not recreate record with a generated identifier when the birthdays are the same' do
+      player = create :player, :imported
+      loader = PlayerLoader.new(first_name: player.first_name, last_name: player.last_name, birth_year: player.birth_year, identifier: nil)
+      loader.load
+      Player.count.must_equal 1
+    end
+
+    it 'will create record different generated identifier when the birthdays are not the same' do
+      player = create :player, :imported
+      loader = PlayerLoader.new(first_name: player.first_name, last_name: player.last_name, birth_year: 2018, identifier: nil)
+      loader.load
+      Player.count.must_equal 2
+      identifiers = Player.all.map(&:identifier)
+      identifiers.must_include 'willite01'
+      identifiers.must_include 'willite02'
+      loader.load
+      Player.count.must_equal 2
+    end
   end
 end
