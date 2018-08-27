@@ -7,8 +7,18 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   body
-    nav.navbar.navbar-dark.sticky-top.bg-dark
-      = link_to 'Baseball Stats', root_path, class: 'navbar-brand'
+    nav.navbar.navbar-dark.sticky-top.bg-dark.row
+      .col-6
+        = link_to 'Baseball Stats', root_path, class: 'navbar-brand'
+      .col-6
+        .btn-group.float-right role='group'
+          button.btn.btn-sm.btn-secondary type='button'
+            = link_to new_loader_job_path do
+              = fa_icon 'user', text: 'Import Players'
+          button.btn.btn-sm.btn-danger type='button'
+            = link_to new_destroyer_job_path do
+              = fa_icon 'close', text: 'Destroy Players'
+
     #main-container.container-fluid
       .row
         .col-2.sidebar
@@ -17,7 +27,16 @@ html
               li.nav-item
                 = link_to players_path, class: 'nav-link' do
                   = fa_icon 'user', text: 'Players'
+              li.nav-item
+                = link_to resque_server_path, class: 'nav-link' do
+                  = fa_icon 'info-circle', text: 'Resque Jobs'
         .col-10
+          #flash-messages
+            - flash.each do |key, value|
+              div class="alert alert-warning alert-dismissible alert-#{key} fade show" role="alert"
+                = value
+                button type="button" class="close" data-dismiss="alert" aria-label="Close"
+                  <span aria-hidden="true">&times;</span>
           #view-content.container
             = yield
   footer.footer

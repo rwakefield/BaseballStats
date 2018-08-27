@@ -28,6 +28,10 @@ h2 {
   padding: 5px;
 }
 
+#flash-messages .alert {
+  margin-top: 15px;
+}
+
 .footer {
   position: absolute;
   bottom: 0;

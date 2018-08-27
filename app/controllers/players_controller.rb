@@ -10,6 +10,7 @@ class PlayersController < ApplicationController
   def create
     @player = Player.new(player_params)
     if @player.save
+      flash[:success] = "#{@player.first_name} #{@player.last_name} has been created"
       redirect_to players_path
     else
       render 'new'
@@ -27,6 +28,7 @@ class PlayersController < ApplicationController
   def update
     @player = Player.find(params[:id])
     if @player.update(player_params)
+      flash[:success] = "#{@player.first_name} #{@player.last_name} has been updated"
       redirect_to players_path
     else
       render 'edit'
