@@ -4,18 +4,22 @@ button class='btn btn-success btn-sm float-right' type='button'
 
 h2 Players
 
-= will_paginate @players
+- if @players.empty?
+  .lead
+    | There are no players matching your search.
+- else
+  = will_paginate @players
 
-table.table.table-sm.table-striped.table-bordered#players
-  thead
-    tr
-      th scope='col'
-        | First Name
-      th scope='col'
-        | Last Name
-      th scope='col'
-        | Birth Year
-      th.actions scope='col'
-        | Actions
-  tbody
-    = render partial: 'player', collection: @players, as: :player
+  table.table.table-sm.table-striped.table-bordered#players
+    thead
+      tr
+        th scope='col'
+          | First Name
+        th scope='col'
+          | Last Name
+        th scope='col'
+          | Birth Year
+        th.actions scope='col'
+          | Actions
+    tbody
+      = render partial: 'player', collection: @players, as: :player

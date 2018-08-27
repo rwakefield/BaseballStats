@@ -1,6 +1,10 @@
 class PlayersController < ApplicationController
   def index
-    @players = Player.paginate(page: params[:page])
+    if params[:query]
+      @players = Player.where(first_name: params[:query]).or(Player.where(last_name: params[:query])).paginate(page: params[:page])
+    else
+      @players = Player.paginate(page: params[:page])
+    end
   end
 
   def new
@@ -38,6 +42,6 @@ class PlayersController < ApplicationController
   private
 
   def player_params
-    params.require(:player).permit(:first_name, :last_name, :identifier, :birth_year);
+    params.require(:player).permit(:first_name, :last_name, :identifier, :birth_year)
   end
 end

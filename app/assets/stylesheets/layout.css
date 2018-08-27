@@ -32,6 +32,14 @@ h2 {
   margin-top: 15px;
 }
 
+.sticky-top input, .sticky-top label {
+  margin-right: 5px;
+}
+
+.sticky-top label {
+  color: #fff;
+}
+
 .footer {
   position: absolute;
   bottom: 0;

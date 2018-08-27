@@ -8,9 +8,13 @@ html
 
   body
     nav.navbar.navbar-dark.sticky-top.bg-dark.row
-      .col-6
+      .col-4
         = link_to 'Baseball Stats', root_path, class: 'navbar-brand'
-      .col-6
+      .col-4
+        = form_tag(players_path, method: :get, class: 'form-inline') do |f|
+          = text_field_tag :query, '', class: 'form-control'
+          = submit_tag 'Search', class: 'btn btn-primary'
+      .col-4
         .btn-group.float-right role='group'
           button.btn.btn-sm.btn-secondary type='button'
             = link_to new_loader_job_path do
