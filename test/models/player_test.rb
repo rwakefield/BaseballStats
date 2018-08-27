@@ -45,4 +45,11 @@ describe 'Player' do
       player.errors.full_messages.must_equal ['Imported is not included in the list']
     end
   end
+
+  describe '#full_name' do
+    it 'will return the full name of the player' do
+      player = create :player, first_name: 'bOb', last_name: 'RoSS'
+      player.full_name.must_equal 'Bob Ross'
+    end
+  end
 end
