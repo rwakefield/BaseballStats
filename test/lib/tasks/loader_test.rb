@@ -23,6 +23,7 @@ describe 'Loader' do
   end
 
   def assert_players
-    Player.count.must_equal 18113
+    expected_identifiers = ['aaronha01', 'aaronto01', 'adairbi01', 'adamsbo01', 'adamsbo02', 'adamsbo03', 'bicknch01', 'biddlro01']
+    Player.all.map(&:identifier).sort.must_equal expected_identifiers
   end
 end

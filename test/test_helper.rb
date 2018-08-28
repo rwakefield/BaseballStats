@@ -4,7 +4,7 @@ require "rails/test_help"
 require "minitest/rails"
 require 'database_cleaner'
 
-DatabaseCleaner.strategy = :truncation
+DatabaseCleaner.strategy = :deletion
 class MiniTest::Spec
   include FactoryBot::Syntax::Methods
   before :each do
