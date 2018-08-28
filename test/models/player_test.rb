@@ -1,6 +1,49 @@
 require 'test_helper'
 
 describe 'Player' do
+  describe 'realations' do
+    it 'should have_and_belong_to_many teams' do
+      player = create :player, :with_team
+      team = Team.first
+
+      Player.count.must_equal 1
+      Team.count.must_equal 1
+      player.teams.must_equal [team]
+      team.players.must_equal [player]
+    end
+
+    it 'should have_many seasons through season_stats' do
+      create :season_stat
+      season = Season.first
+      player = Player.first
+
+      Player.count.must_equal 1
+      Season.count.must_equal 1
+      player.seasons.must_equal [season]
+    end
+
+    it 'should have_many leagues through teams' do
+      player = create :player, :with_team
+      team = Team.first
+      league = create :league, teams: [team]
+
+      Player.count.must_equal 1
+      Team.count.must_equal 1
+      League.count.must_equal 1
+      player.leagues.must_equal [league]
+    end
+
+    it 'should have_many stats through season_stats' do
+      create :season_stat
+      player = Player.first
+      stat = Stat.first
+
+      Player.count.must_equal 1
+      Stat.count.must_equal 1
+      player.stats.must_equal [stat]
+    end
+  end
+
   describe 'validations' do
     it 'will validate the presence of first_name' do
       player = build :player, first_name: nil

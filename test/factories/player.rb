@@ -13,5 +13,9 @@ FactoryBot.define do
     trait :sequence_identifier do
       sequence(:identifier) { |n| "willite0#{n}" }
     end
+
+    trait :with_team do
+      teams { [FactoryBot.create(:team)] }
+    end
   end
 end
