@@ -13,5 +13,28 @@ describe 'PlayerDestroyer' do
       player.must_equal non_imported_player
       player.imported.must_equal false
     end
+
+    it 'will destroy all other data' do
+      create :organization
+      create :season_stat
+
+      League.count.must_equal 1
+      Organization.count.must_equal 1
+      Player.count.must_equal 1
+      Season.count.must_equal 1
+      SeasonStat.count.must_equal 1
+      Stat.count.must_equal 1
+      Team.count.must_equal 1
+
+      PlayerDestroyer.destroy_all_players
+
+      League.count.must_equal 0
+      Organization.count.must_equal 0
+      Player.count.must_equal 1
+      Season.count.must_equal 0
+      SeasonStat.count.must_equal 0
+      Stat.count.must_equal 0
+      Team.count.must_equal 0
+    end
   end
 end

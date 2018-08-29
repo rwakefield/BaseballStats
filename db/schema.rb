@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180828164925) do
+ActiveRecord::Schema.define(version: 20180828224732) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "leagues", force: :cascade do |t|
     t.string   "name"
@@ -24,7 +27,7 @@ ActiveRecord::Schema.define(version: 20180828164925) do
     t.string   "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["team_id", "league_id"], name: "index_organizations_on_team_id_and_league_id"
+    t.index ["team_id", "league_id"], name: "index_organizations_on_team_id_and_league_id", using: :btree
   end
 
   create_table "players", force: :cascade do |t|
@@ -35,13 +38,13 @@ ActiveRecord::Schema.define(version: 20180828164925) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.boolean  "imported",   default: false, null: false
-    t.index ["identifier"], name: "index_players_on_identifier", unique: true
+    t.index ["identifier"], name: "index_players_on_identifier", unique: true, using: :btree
   end
 
   create_table "players_teams", id: false, force: :cascade do |t|
     t.integer "player_id", null: false
     t.integer "team_id",   null: false
-    t.index ["player_id", "team_id"], name: "index_players_teams_on_player_id_and_team_id"
+    t.index ["player_id", "team_id"], name: "index_players_teams_on_player_id_and_team_id", using: :btree
   end
 
   create_table "season_stats", force: :cascade do |t|
@@ -50,7 +53,7 @@ ActiveRecord::Schema.define(version: 20180828164925) do
     t.integer  "player_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["season_id", "stat_id", "player_id"], name: "index_season_stats_on_season_id_and_stat_id_and_player_id"
+    t.index ["season_id", "stat_id", "player_id"], name: "index_season_stats_on_season_id_and_stat_id_and_player_id", using: :btree
   end
 
   create_table "seasons", force: :cascade do |t|
@@ -72,6 +75,9 @@ ActiveRecord::Schema.define(version: 20180828164925) do
     t.integer  "times_caught_steeling"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.string   "player_identifier"
+    t.string   "season_identifier"
+    t.string   "team_identifier"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -79,7 +85,7 @@ ActiveRecord::Schema.define(version: 20180828164925) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "league_id"
-    t.index ["league_id"], name: "index_teams_on_league_id"
+    t.index ["league_id"], name: "index_teams_on_league_id", using: :btree
   end
 
 end

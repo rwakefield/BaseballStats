@@ -6,5 +6,6 @@ class PlayerLoaderJob < ActiveJob::Base
   def perform
     RocketHomework::Application.load_tasks
     Rake::Task['loader:load_players'].invoke
+    Rake::Task['loader:load_batting'].invoke
   end
 end
