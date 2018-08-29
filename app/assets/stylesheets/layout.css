@@ -56,3 +56,8 @@ h2 {
 #view-content {
   margin-top: 15px;
 }
+
+.stat-table {
+  text-align: center;
+  font-size: 12px;
+}

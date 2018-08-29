@@ -23,6 +23,7 @@ class PlayersController < ApplicationController
 
   def show
     @player = Player.find(params[:id])
+    @presenter = PlayerPresenter.new(player: @player)
   end
 
   def update

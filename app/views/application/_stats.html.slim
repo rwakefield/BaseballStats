@@ -1,0 +1,14 @@
+- presenter = StatPresenter.new(stats: stats)
+table.table.table-sm.table-striped.table-bordered.stat-table
+  thead
+    tr
+      - StatPresenter.stat_headers.each do |header|
+          th scope='col'
+            = header
+  tbody
+    - presenter.stat_rows.each do |stat_row|
+      tr
+        - stat_row.each do |col|
+          td
+            = col
+

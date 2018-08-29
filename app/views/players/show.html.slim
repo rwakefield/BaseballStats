@@ -1,1 +1,21 @@
-h2 Show Player
+h2
+  = @player.full_name
+
+dl class="row"
+  dt.col-sm-3
+    | Years Active
+  dd.col-sm-9
+    = @presenter.years_active
+  dt.col-sm-3
+    | Teams
+  dd.col-sm-9
+    = @presenter.teams
+  dt.col-sm-3
+    | Leagues
+  dd.col-sm-9
+    = @presenter.leagues
+
+- unless @player.stats.empty?
+  h3
+    | Season Stats
+  = render partial: 'stats', locals: { stats: @presenter.season_stats }
