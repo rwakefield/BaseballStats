@@ -1,5 +1,6 @@
 class PlayerPresenter
   include CareerAverageCalculator
+  include CareerSluggingCalculator
 
   attr_reader :player
 
