@@ -16,7 +16,8 @@ describe 'StatPresenter' do
         'Runs Batted In',
         'Stolen Bases',
         'Caught Stealing',
-        'Batting Average'
+        'Batting Average',
+        'Slugging %'
       ]
       StatPresenter.stat_headers.must_equal expected_results
     end
@@ -32,7 +33,7 @@ describe 'StatPresenter' do
 
         expected_average = '%.3f' % (stat.hits.to_f / stat.at_bats.to_f)
 
-        expected_results = ['team_identifier', '2018', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', expected_average.to_s]
+        expected_results = ['team_identifier', '2018', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', expected_average.to_s, '21.000']
         presenter = StatPresenter.new(stats: player.stats)
 
         presenter.stat_rows.must_equal [expected_results]

@@ -75,6 +75,13 @@ describe 'Stat' do
     end
   end
 
+  describe '#singles' do
+    it 'will return the number of hits subtracted by the sum of doubles triples and home runs' do
+      stat = create :stat, hits: 10, doubles: 1, triples: 1, home_runs: 1
+      stat.singles.must_equal 10 - 3
+    end
+  end
+
   describe 'validations' do
     it 'will validate the presence of player_identifier' do
       stat = build :stat, player_identifier: nil

@@ -1,5 +1,6 @@
 class StatPresenter
   include BattingAverageCalculator
+  include SluggingPercentageCalculator
 
   def initialize(stats:)
     @stats = stats
@@ -19,7 +20,8 @@ class StatPresenter
       'Runs Batted In',
       'Stolen Bases',
       'Caught Stealing',
-      'Batting Average'
+      'Batting Average',
+      'Slugging %'
     ]
   end
 
@@ -38,7 +40,8 @@ class StatPresenter
         stat.runs_batted_in,
         stat.stolen_bases,
         stat.times_caught_steeling,
-        batting_average(baseball_stat: stat)
+        batting_average(baseball_stat: stat),
+        slugging_percentage(baseball_stat: stat)
       ].map(&:to_s)
     end
   end

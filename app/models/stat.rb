@@ -6,6 +6,10 @@ class Stat < ApplicationRecord
 
   before_save :set_defaults
 
+  def singles
+    hits - (doubles + triples + home_runs)
+  end
+
   private
 
   def set_defaults
