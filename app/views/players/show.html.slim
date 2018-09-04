@@ -14,8 +14,12 @@ dl class="row"
     | Leagues
   dd.col-sm-9
     = @presenter.leagues
+  dt.col-sm-3
+    | Career Batting Average
+  dd.col-sm-9
+    = @presenter.career_batting_average
 
-- unless @player.stats.empty?
+- unless @presenter.stats.empty?
   h3
     | Season Stats
-  = render partial: 'stats', locals: { stats: @presenter.season_stats }
+  = render partial: 'stats', locals: { stats: @presenter.stats }

@@ -1,4 +1,6 @@
 class PlayerPresenter
+  include CareerAverageCalculator
+
   attr_reader :player
 
   def initialize(player:)
@@ -9,7 +11,7 @@ class PlayerPresenter
     if player.seasons.empty?
       'unknown'
     else
-      player.seasons.map(&:year).sort.join(', ')
+      player.seasons.map(&:year).uniq.sort.join(', ')
     end
   end
 
@@ -17,7 +19,7 @@ class PlayerPresenter
     if player.teams.empty?
       'unknown'
     else
-      player.teams.map(&:name).sort.join(', ')
+      player.teams.map(&:name).uniq.sort.join(', ')
     end
   end
 
@@ -25,11 +27,11 @@ class PlayerPresenter
     if player.leagues.empty?
       'unknown'
     else
-      player.leagues.map(&:name).sort.join(', ')
+      player.leagues.map(&:name).uniq.sort.join(', ')
     end
   end
 
-  def season_stats
+  def stats
     player.stats.joins(:season).order('seasons.year')
   end
 end

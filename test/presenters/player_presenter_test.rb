@@ -105,7 +105,7 @@ describe 'PlayerPresenter' do
       player = Player.first
 
       presenter = PlayerPresenter.new(player: player)
-      presenter.season_stats.must_equal [season2.stats.first, season1.stats.first]
+      presenter.stats.must_equal [season2.stats.first, season1.stats.first]
       Player.count.must_equal 1
       Season.count.must_equal 2
       Stat.count.must_equal 2

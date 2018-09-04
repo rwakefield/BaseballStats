@@ -26,4 +26,6 @@ guard :minitest do
   watch(%r{^test/services/(.*)\.rb$}) { |m| "test/services/#{m[1]}.rb" }
   watch(%r{^lib/tasks/(.*)\.rake$}) { |m| "test/lib/tasks/#{m[1]}_test.rb" }
   watch(%r{^test/lib/tasks/(.*)\.rb$}) { |m| "test/lib/tasks/#{m[1]}.rb" }
+  watch(%r{^lib/(.*)\.rb$}) { |m| "test/lib/#{m[1]}_test.rb" }
+  watch(%r{^test/lib/(.*)\.rb$}) { |m| "test/lib/#{m[1]}.rb" }
 end
