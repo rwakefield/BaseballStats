@@ -41,6 +41,9 @@ html
               li.nav-item
                 = link_to all_time_leaders_path, class: 'nav-link' do
                   = fa_icon 'trophy', text: 'All Time'
+              li.nav-item
+                = link_to teams_path, class: 'nav-link' do
+                  = fa_icon 'trophy', text: 'By Team'
 
         .col-10
           #flash-messages

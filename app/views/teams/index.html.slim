@@ -1,0 +1,20 @@
+h2
+  | Team Leaderboards
+
+table.table.table-sm.table-striped.table-bordered
+  thead
+    tr
+      th scope='col'
+        | Name
+      th scope='col'
+        | Actions
+  tbody
+    - @teams.each do |team|
+      tr
+        td
+          = team.name
+        td.actions
+          .btn-group role='group'
+            button.btn.btn-sm.btn-info type='button'
+              = link_to team_path(team) do
+                = fa_icon 'eye', text: 'View Leaders'

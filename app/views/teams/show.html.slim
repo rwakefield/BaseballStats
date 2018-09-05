@@ -1,4 +1,4 @@
 h2
-  | All Time Leaders
+  = "#{@team.name} Leaders"
 
 = render partial: 'leaderboard', locals: { presenter: @presenter }
