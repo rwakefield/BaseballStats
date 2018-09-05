@@ -15,13 +15,14 @@ html
           = text_field_tag :query, '', class: 'form-control'
           = submit_tag 'Search', class: 'btn btn-primary'
       .col-4
-        .btn-group.float-right role='group'
-          button.btn.btn-sm.btn-secondary type='button'
-            = link_to new_loader_job_path do
-              = fa_icon 'user', text: 'Import Players'
-          button.btn.btn-sm.btn-danger type='button'
-            = link_to new_destroyer_job_path do
-              = fa_icon 'close', text: 'Destroy Players'
+        - if Rails.env.development?
+          .btn-group.float-right role='group'
+            button.btn.btn-sm.btn-secondary type='button'
+              = link_to new_loader_job_path do
+                = fa_icon 'user', text: 'Import Players'
+            button.btn.btn-sm.btn-danger type='button'
+              = link_to new_destroyer_job_path do
+                = fa_icon 'close', text: 'Destroy Players'
 
     #main-container.container-fluid
       .row
@@ -33,9 +34,10 @@ html
               li.nav-item
                 = link_to players_path, class: 'nav-link' do
                   = fa_icon 'user', text: 'Players'
-              li.nav-item
-                = link_to resque_server_path, class: 'nav-link' do
-                  = fa_icon 'info-circle', text: 'Resque Jobs'
+              - if Rails.env.development?
+                li.nav-item
+                  = link_to resque_server_path, class: 'nav-link' do
+                    = fa_icon 'info-circle', text: 'Resque Jobs'
               li.nav-header
                 | LEADERBOARD
               li.nav-item
