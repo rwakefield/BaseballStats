@@ -1,5 +1,6 @@
 class PlayersController < ApplicationController
   before_filter :get_players, only: [:index]
+
   def index
   end
 

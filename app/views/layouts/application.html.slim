@@ -28,12 +28,20 @@ html
         .col-2.sidebar
           nav.navbar
             ul.nav.flex-column
+              li.nav-header
+                | NAVIGATION
               li.nav-item
                 = link_to players_path, class: 'nav-link' do
                   = fa_icon 'user', text: 'Players'
               li.nav-item
                 = link_to resque_server_path, class: 'nav-link' do
                   = fa_icon 'info-circle', text: 'Resque Jobs'
+              li.nav-header
+                | LEADERBOARD
+              li.nav-item
+                = link_to all_time_leaders_path, class: 'nav-link' do
+                  = fa_icon 'trophy', text: 'All Time'
+
         .col-10
           #flash-messages
             - flash.each do |key, value|

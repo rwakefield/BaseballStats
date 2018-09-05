@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :players
   resources :loader_jobs, only: [:new]
   resources :destroyer_jobs, only: [:new]
+  resources :all_time_leaders, only: [:index]
 end

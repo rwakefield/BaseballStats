@@ -1,0 +1,25 @@
+table.table.table-sm.table-striped.table-bordered
+  thead
+    tr
+      th scope='col'
+        | Rank
+      th scope='col'
+        | Name
+      th scope='col'
+        | Average
+      th scope='col'
+        | Actions
+  tbody
+    - batting_list.each_with_index do |player, rank|
+      tr
+        td
+          = rank + 1
+        td
+          = player.full_name
+        td
+          = player.career_batting_average
+        td.actions
+          .btn-group role='group'
+            button.btn.btn-sm.btn-info type='button'
+              = link_to player_path(player) do
+                = fa_icon 'eye', text: 'Show'

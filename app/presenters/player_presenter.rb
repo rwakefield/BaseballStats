@@ -1,7 +1,4 @@
 class PlayerPresenter
-  include CareerAverageCalculator
-  include CareerSluggingCalculator
-
   attr_reader :player
 
   def initialize(player:)

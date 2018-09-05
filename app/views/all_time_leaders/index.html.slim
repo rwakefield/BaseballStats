@@ -1,0 +1,14 @@
+h2
+  | All Time Leaders
+
+nav
+  div class='nav nav-tabs' id='nav-tab' role='tablist'
+    a class='nav-item nav-link active' id='nav-batting-tab' data-toggle='tab' href='#nav-batting' role='tab' aria-controls='nav-batting' aria-selected='true'
+      | Batting Average
+    a class='nav-item nav-link' id='nav-slugging-tab' data-toggle='tab' href='#nav-slugging' role='tab' aria-controls='nav-slugging' aria-selected='false'
+      | Slugging Percentage
+div class='tab-content' id='nav-tabContent'
+  div class='tab-pane fade show active' id='nav-batting' role='tabpanel' aria-labelledby='nav-batting-tab'
+    = render partial: 'batting_average', locals: { batting_list: @presenter.batting_list }
+  div class='tab-pane fade' id='nav-slugging' role='tabpanel' aria-labelledby='nav-slugging-tab'
+    = render partial: 'slugging_percentage', locals: { slugging_list: @presenter.slugging_list }

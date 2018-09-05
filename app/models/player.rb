@@ -1,4 +1,7 @@
 class Player < ApplicationRecord
+  include CareerAverageCalculator
+  include CareerSluggingCalculator
+
   has_and_belongs_to_many :teams
   has_many :leagues, through: :teams
   has_many :season_stats
