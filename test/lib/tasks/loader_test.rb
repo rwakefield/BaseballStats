@@ -53,5 +53,6 @@ describe 'Loader' do
     League.count.must_equal 2
     Team.count.must_equal 4
     Stat.count.must_equal 5
+    CareerStat.count.must_equal 2
   end
 end

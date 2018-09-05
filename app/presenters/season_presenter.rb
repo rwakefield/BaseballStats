@@ -5,8 +5,8 @@ class SeasonPresenter < AllTimePresenter
 
   private
 
-  def players
-    season.players.distinct
+  def player_source
+    season.players
   end
 
   attr_reader :season

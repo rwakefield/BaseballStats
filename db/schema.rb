@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180905040100) do
+ActiveRecord::Schema.define(version: 20180905164716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "career_stats", force: :cascade do |t|
+    t.decimal "batting_average",     precision: 10, scale: 3
+    t.decimal "slugging_percentage", precision: 10, scale: 3
+    t.integer "player_id"
+    t.index ["player_id"], name: "index_career_stats_on_player_id", using: :btree
+  end
 
   create_table "leagues", force: :cascade do |t|
     t.string   "name"

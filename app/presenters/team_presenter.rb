@@ -5,8 +5,8 @@ class TeamPresenter < AllTimePresenter
 
   private
 
-  def players
-    team.players.left_outer_joins(:stats).where.not(stats: { id: nil }).distinct
+  def player_source
+    team.players
   end
 
   attr_reader :team

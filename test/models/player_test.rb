@@ -42,6 +42,48 @@ describe 'Player' do
       Stat.count.must_equal 1
       player.stats.must_equal [stat]
     end
+
+    it 'should have one career stat' do
+      career_stat = create :career_stat
+      player = Player.first
+
+      player.career_stat.must_equal career_stat
+      career_stat.player.must_equal player
+      Player.count.must_equal 1
+      CareerStat.count.must_equal 1
+    end
+  end
+
+  describe '#career_batting_average' do
+    it 'will pull the data from the batting average column in career stat when there is one' do
+      career_stat = create :career_stat
+      player = Player.first
+      expected_result = '%.3f' % career_stat.batting_average
+      player.career_batting_average.must_equal expected_result
+      Player.count.must_equal 1
+      CareerStat.count.must_equal 1
+    end
+
+    it 'will be 0.00 when there is no career_stat' do
+      player = create :player
+      player.career_batting_average.must_equal '0.000'
+    end
+  end
+
+  describe '#career_slugging_percentage' do
+    it 'will pull the data from the batting average column in career stat when there is one' do
+      career_stat = create :career_stat
+      player = Player.first
+      expected_result = '%.3f' % career_stat.slugging_percentage
+      player.career_slugging_percentage.must_equal expected_result
+      Player.count.must_equal 1
+      CareerStat.count.must_equal 1
+    end
+
+    it 'will be 0.00 when there is no career_stat' do
+      player = create :player
+      player.career_slugging_percentage.must_equal '0.000'
+    end
   end
 
   describe 'validations' do

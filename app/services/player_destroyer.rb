@@ -8,4 +8,10 @@ class PlayerDestroyer
     Stat.destroy_all
     Team.destroy_all
   end
+
+  def self.destroy_empty_players
+    Player.all.each do |player|
+      player.destroy if player.stats.empty?
+    end
+  end
 end

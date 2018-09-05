@@ -21,6 +21,7 @@ class BattingLoader
     player.teams << team unless player.teams.include?(team)
     SeasonStat.find_or_create_by(season: season, player: player, stat: stat)
     Organization.find_or_create_by(team: team, league: league, level: 'Major')
+    update_career_stats
   end
 
   private
@@ -45,7 +46,7 @@ class BattingLoader
   end
 
   def player
-    Player.find_by(identifier: player_identifier)
+    @player ||= Player.find_by(identifier: player_identifier)
   end
 
   def league
@@ -74,6 +75,13 @@ class BattingLoader
 
   def team
     Team.find_or_create_by(name: team_name)
+  end
+
+  def update_career_stats
+    CareerStat.find_or_initialize_by(player_id: player.id).tap do |t|
+      t.batting_average = player.calculate_career_batting_average
+      t.slugging_percentage = player.calculate_career_slugging_percentage
+    end.save!
   end
 
   attr_reader :csv_row, :stat

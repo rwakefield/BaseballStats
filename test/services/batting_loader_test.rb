@@ -19,6 +19,7 @@ describe 'BattingLoader' do
         SeasonStat.count.must_equal 0
         Stat.count.must_equal 0
         Team.count.must_equal 0
+        CareerStat.count.must_equal 0
       end
     end
 
@@ -50,6 +51,7 @@ describe 'BattingLoader' do
     season = Season.first
     stat = Stat.first
     team = Team.first
+    career_stat = CareerStat.first
 
     League.count.must_equal 1
     Organization.count.must_equal 1
@@ -58,6 +60,7 @@ describe 'BattingLoader' do
     SeasonStat.count.must_equal 1
     Stat.count.must_equal 1
     Team.count.must_equal 1
+    CareerStat.count.must_equal 1
 
     league.teams.must_equal [team]
 
@@ -65,6 +68,7 @@ describe 'BattingLoader' do
     player.leagues.must_equal [league]
     player.seasons.must_equal [season]
     player.stats.must_equal [stat]
+    player.career_stat.must_equal career_stat
 
     season.stats.must_equal [stat]
     season.players.must_equal [player]
@@ -88,5 +92,9 @@ describe 'BattingLoader' do
     stat.runs_batted_in.must_equal fields[11].to_i
     stat.stolen_bases.must_equal fields[12].to_i
     stat.times_caught_steeling.must_equal fields[13].to_i
+
+    career_stat.player.must_equal player
+    career_stat.batting_average.must_equal 0.246
+    career_stat.slugging_percentage.must_equal 0.344
   end
 end

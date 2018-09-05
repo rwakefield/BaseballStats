@@ -37,4 +37,19 @@ describe 'PlayerDestroyer' do
       Team.count.must_equal 0
     end
   end
+
+  describe '#destroy_empty_players' do
+    it 'will remove players with no stats' do
+      create :season_stat
+      player_with_stats = Player.first
+      player_with_no_stats = create :player, identifier: 'no_stat_player'
+      Player.count.must_equal 2
+      Stat.count.must_equal 1
+      PlayerDestroyer.destroy_empty_players
+
+      Stat.count.must_equal 1
+      Player.count.must_equal 1
+      Player.first.must_equal player_with_stats
+    end
+  end
 end
