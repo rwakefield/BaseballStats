@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :destroyer_jobs, only: [:new]
   resources :all_time_leaders, only: [:index]
   resources :teams, only: [:index, :show]
+  resources :leagues, only: [:index, :show]
 end
