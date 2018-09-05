@@ -47,6 +47,9 @@ html
               li.nav-item
                 = link_to leagues_path, class: 'nav-link' do
                   = fa_icon 'trophy', text: 'By League'
+              li.nav-item
+                = link_to seasons_path, class: 'nav-link' do
+                  = fa_icon 'trophy', text: 'By Season'
 
         .col-10
           #flash-messages
@@ -60,5 +63,5 @@ html
   footer.footer
     .container
       span.text-muted
-        = link_to 'https://github.com/rwakefield/RocketHomework' do
+        = link_to 'https://github.com/rwakefield/BaseballStats' do
           = fa_icon 'github', text: 'View Source'

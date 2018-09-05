@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :all_time_leaders, only: [:index]
   resources :teams, only: [:index, :show]
   resources :leagues, only: [:index, :show]
+  resources :seasons, only: [:index, :show]
 end

@@ -1,0 +1,20 @@
+h2
+  | Season Leaderboards
+
+table.table.table-sm.table-striped.table-bordered
+  thead
+    tr
+      th scope='col'
+        | Name
+      th scope='col'
+        | Actions
+  tbody
+    - @seasons.each do |season|
+      tr
+        td
+          = season.year
+        td.actions
+          .btn-group role='group'
+            button.btn.btn-sm.btn-info type='button'
+              = link_to season_path(season) do
+                = fa_icon 'eye', text: 'View Leaders'
