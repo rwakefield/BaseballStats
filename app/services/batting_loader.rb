@@ -18,6 +18,7 @@ class BattingLoader
   def load
     return unless player
     load_stat
+    player.teams << team unless player.teams.include?(team)
     SeasonStat.find_or_create_by(season: season, player: player, stat: stat)
     Organization.find_or_create_by(team: team, league: league, level: 'Major')
   end
@@ -72,7 +73,7 @@ class BattingLoader
   end
 
   def team
-    player.teams.find_or_create_by(name: team_name)
+    Team.find_or_create_by(name: team_name)
   end
 
   attr_reader :csv_row, :stat
